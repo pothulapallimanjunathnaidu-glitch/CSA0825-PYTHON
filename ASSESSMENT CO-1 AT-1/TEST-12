@@ -1,0 +1,50 @@
+
+def rate_per_litre(fat, snf, season):
+    if season == "summer":
+        base_rate = 32.00
+    else:
+        base_rate = 30.00
+
+    fat_steps = round((fat - 3.5) / 0.1)
+    snf_steps = round((snf - 8.5) / 0.1)
+
+    rate = base_rate + fat_steps * 0.45 + snf_steps * 0.30
+
+    return round(rate, 2)
+
+def payout(litres, fat, snf, season):
+    return round(litres * rate_per_litre(fat, snf, season), 2)
+
+def ten_day_total(entries, season):
+    total_litres = sum(entry[0] for entry in entries)
+
+    total = sum(
+        payout(litres, fat, snf, season)
+        for litres, fat, snf in entries
+    )
+
+    if total_litres > 500:
+        total += total_litres * 0.50
+
+    return round(total, 2)
+
+season = input("Enter season (summer/normal): ").lower()
+
+entries = []
+
+for day in range(1, 11):
+    print("Day", day)
+
+    litres = float(input("Enter litres: "))
+    fat = float(input("Enter fat: "))
+    snf = float(input("Enter SNF: "))
+
+    if litres >= 0 and 2 <= fat <= 7 and snf >= 0:
+        entries.append((litres, fat, snf))
+    else:
+        print("Invalid entry")
+
+print(
+    "Ten-day total:",
+    f"{ten_day_total(entries, season):.2f}"
+)
