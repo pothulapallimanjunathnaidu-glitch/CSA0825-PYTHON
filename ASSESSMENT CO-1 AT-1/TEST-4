@@ -1,0 +1,27 @@
+
+fat = 4.2
+snf = 8.5
+litres = 10.0
+
+FAT_STEP = 0.1
+SNF_STEP = 0.1
+
+BASE_RATE = 30.0
+FAT_RATE = 5.0
+SNF_RATE = 2.0
+
+fat_steps = round((fat - 2.0) / FAT_STEP)
+snf_steps = round((snf - 0.0) / SNF_STEP)
+
+rate = BASE_RATE + fat * FAT_RATE + snf * SNF_RATE
+amount = litres * rate
+
+print("Fat Steps:", fat_steps)
+print("SNF Steps:", snf_steps)
+print("Rate per Litre:", round(rate, 2))
+print("Amount:", round(amount, 2))
+print("Fat Valid:", 2.0 <= fat <= 7.0)
+
+print("Expression 1:", (4.2 - 3.5) / 0.1)
+print("Expression 2:", round((4.2 - 3.5) / 0.1))
+print("Expression 3:", -7 // 2)
