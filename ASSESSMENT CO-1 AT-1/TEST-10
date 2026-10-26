@@ -1,0 +1,37 @@
+
+from decimal import Decimal
+import time
+
+def total_float(payments):
+    total = 0.0
+
+    for amount in payments:
+        total += amount
+
+    return total
+
+def total_decimal(payments):
+    total = Decimal("0.00")
+
+    for amount in payments:
+        total += Decimal(str(amount))
+
+    return total
+
+for n in [300, 6000, 150000]:
+    payments = [33.40] * n
+
+    start = time.perf_counter()
+    f_total = total_float(payments)
+    f_time = time.perf_counter() - start
+
+    start = time.perf_counter()
+    d_total = total_decimal(payments)
+    d_time = time.perf_counter() - start
+
+    print("Payments:", n)
+    print("Float total:", f_total)
+    print("Decimal total:", d_total)
+    print("Float time:", f_time)
+    print("Decimal time:", d_time)
+    print()
