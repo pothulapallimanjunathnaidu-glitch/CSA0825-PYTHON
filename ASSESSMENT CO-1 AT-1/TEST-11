@@ -1,0 +1,39 @@
+
+BASE_RATE = 30.00
+FAT_STEP_VALUE = 0.40
+SNF_STEP_VALUE = 0.30
+
+def rate_per_litre(fat, snf):
+    fat_steps = round((fat - 3.5) / 0.1)
+    snf_steps = round((snf - 8.5) / 0.1)
+
+    return round(
+        BASE_RATE
+        + fat_steps * FAT_STEP_VALUE
+        + snf_steps * SNF_STEP_VALUE,
+        2
+    )
+
+def payout(litres, fat, snf):
+    return round(litres * rate_per_litre(fat, snf), 2)
+
+def ten_day_total(payments):
+    return sum(payments)
+
+payments = []
+
+for day in range(1, 11):
+    print("Day", day)
+
+    litres = float(input("Enter litres: "))
+    fat = float(input("Enter fat: "))
+    snf = float(input("Enter SNF: "))
+
+    if litres >= 0 and 2 <= fat <= 7 and snf >= 0:
+        amount = payout(litres, fat, snf)
+        payments.append(amount)
+        print("Payment:", f"{amount:.2f}")
+    else:
+        print("Invalid entry")
+
+print("Ten-day total:", f"{ten_day_total(payments):.2f}")
