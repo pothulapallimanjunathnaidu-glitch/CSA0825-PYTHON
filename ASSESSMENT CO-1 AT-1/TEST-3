@@ -1,0 +1,27 @@
+
+BASE_RATE = 30.0
+FAT_RATE = 5.0
+SNF_RATE = 2.0
+MIN_FAT = 2.0
+MAX_FAT = 7.0
+
+farmer_id = 101
+litres = 10
+fat = 5.0
+snf = 8.0
+
+a = 10
+a = "Hello"
+b = 5
+
+a, b = b, a
+
+print("Base Rate:", BASE_RATE)
+print("Fat Rate:", FAT_RATE)
+print("SNF Rate:", SNF_RATE)
+print("Farmer ID:", farmer_id)
+print("Litres:", litres)
+print("Fat:", fat)
+print("SNF:", snf)
+print("Dynamic Typing:", a)
+print("Swapped Values:", a, b)
