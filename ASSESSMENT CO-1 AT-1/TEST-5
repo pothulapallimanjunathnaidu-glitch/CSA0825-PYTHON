@@ -1,0 +1,26 @@
+
+farmer_id = input("Enter Farmer ID: ")
+
+litres_text = input("Enter Litres: ")
+fat_text = input("Enter Fat Percentage: ")
+snf_text = input("Enter SNF Percentage: ")
+
+if (litres_text.replace(".", "", 1).isdigit()
+    and fat_text.replace(".", "", 1).isdigit()
+    and snf_text.replace(".", "", 1).isdigit()):
+
+    litres = float(litres_text)
+    fat = float(fat_text)
+    snf = float(snf_text)
+
+    if litres >= 0 and 2.0 <= fat <= 7.0 and snf >= 0:
+        rate = 30.0 + fat * 5.0 + snf * 2.0
+        amount = litres * rate
+
+        print(f"Farmer ID: {farmer_id}")
+        print(f"Rate per Litre: Rs. {rate:8.2f}")
+        print(f"Payment Amount: Rs. {amount:8.2f}")
+    else:
+        print("Invalid values")
+else:
+    print("Please enter valid numeric values")
