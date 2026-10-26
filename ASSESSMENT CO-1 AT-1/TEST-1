@@ -1,1 +1,37 @@
 
+BASIC_RATE = 30.0
+FAT_RATE = 5.0
+SNF_RATE = 2.0
+
+total_payment = 0.0
+
+farmer_id = input("Enter Farmer ID: ")
+entries = int(input("Enter number of milk entries: "))
+
+for i in range(entries):
+    print("\nEntry", i + 1)
+
+    litres = float(input("Enter litres: "))
+    fat = float(input("Enter Fat percentage (2 to 7): "))
+    snf = float(input("Enter SNF percentage: "))
+    shift = input("Enter shift (Morning/Evening): ").lower()
+
+    if litres < 0 or not (2 <= fat <= 7) or snf < 0:
+        print("Invalid input! Try again.")
+        continue
+
+    if shift not in ["morning", "evening"]:
+        print("Invalid shift!")
+        continue
+
+    rate = BASIC_RATE + (fat * FAT_RATE) + (snf * SNF_RATE)
+    amount = litres * rate
+    total_payment += amount
+
+    print("Rate per litre: Rs.", round(rate, 2))
+    print("Payment amount: Rs.", round(amount, 2))
+
+print("\n--- Payment Summary ---")
+print("Farmer ID:", farmer_id)
+print("Ten-day total payment: Rs.", round(total_payment, 2))
+
