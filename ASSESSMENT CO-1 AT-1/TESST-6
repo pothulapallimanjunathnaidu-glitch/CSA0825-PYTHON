@@ -1,0 +1,36 @@
+
+BASE_RATE = 30.0
+FAT_RATE = 5.0
+SNF_RATE = 2.0
+
+def rate_per_litre(fat, snf):
+    return BASE_RATE + fat * FAT_RATE + snf * SNF_RATE
+
+def payout(litres, fat, snf):
+    return litres * rate_per_litre(fat, snf)
+
+def ten_day_total(payments):
+    return sum(payments)
+
+farmer_id = input("Enter Farmer ID: ")
+payments = []
+
+for i in range(10):
+    print("Day", i + 1)
+
+    litres = float(input("Enter Litres: "))
+    fat = float(input("Enter Fat Percentage: "))
+    snf = float(input("Enter SNF Percentage: "))
+
+    if litres >= 0 and 2.0 <= fat <= 7.0 and snf >= 0:
+        rate = rate_per_litre(fat, snf)
+        amount = payout(litres, fat, snf)
+        payments.append(amount)
+
+        print(f"Rate per Litre: Rs. {rate:.2f}")
+        print(f"Payment: Rs. {amount:.2f}")
+    else:
+        print("Invalid entry")
+
+print("Farmer ID:", farmer_id)
+print(f"Ten-Day Total: Rs. {ten_day_total(payments):.2f}")
